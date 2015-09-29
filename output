@@ -1,0 +1,166 @@
+###############################################################################################################
+#				Puppet local. Nginx module
+###############################################################################################################
+
+[root@localhost ~]# puppet apply ~/first.pp
+Notice: Compiled catalog for localhost.minsk.epam.com in environment production in 0.54 seconds
+Notice: /Stage[main]/Main/Package[nginx]/ensure: created
+Notice: Nginx is running.
+Notice: /Stage[main]/Main/Notify[Nginx is running.]/message: defined 'message' as 'Nginx is running.'
+Notice: Nginx is installed.
+Notice: /Stage[main]/Main/Notify[Nginx is installed.]/message: defined 'message' as 'Nginx is installed.'
+Notice: /Stage[main]/Main/Service[nginx]/ensure: ensure changed 'stopped' to 'running'
+Notice: Finished catalog run in 330.68 seconds
+[root@localhost ~]# puppet apply ~/first.pp
+Notice: Compiled catalog for localhost.minsk.epam.com in environment production in 0.56 seconds
+Notice: Nginx is running.
+Notice: /Stage[main]/Main/Notify[Nginx is running.]/message: defined 'message' as 'Nginx is running.'
+Notice: Nginx is installed.
+Notice: /Stage[main]/Main/Notify[Nginx is installed.]/message: defined 'message' as 'Nginx is installed.'
+Notice: Finished catalog run in 0.43 seconds
+[root@localhost ~]# 
+
+
+###############################################################################################################
+#				Puppet client. SSL auth to master
+###############################################################################################################
+
+[root@puppetc ~]# puppet agent --server  epbyminw1873.minsk.epam.com --test --waitforcert 5
+Info: Creating a new SSL key for puppetc.minsk.epam.com
+Error: Could not request certificate: Connection refused - connect(2)
+Error: Could not request certificate: Connection refused - connect(2)
+Notice: Using less secure serialization of reports and query parameters for compatibility
+Notice: with older puppet master. To remove this notice, please upgrade your master(s)
+Notice: to Puppet 3.3 or newer.
+Notice: See http://links.puppetlabs.com/deprecate_yaml_on_network for more information.
+Info: Caching certificate for ca
+Info: csr_attributes file loading from /etc/puppet/csr_attributes.yaml
+Info: Creating a new SSL certificate request for puppetc.minsk.epam.com
+Info: Certificate Request fingerprint (SHA256): A7:9C:84:BC:8F:C1:7F:B0:D4:98:C7:19:2E:5F:D7:2B:08:3D:2E:BA:01:CE:7D:FF:F7:2
+1:09:4D:DF:B3:73:64
+Notice: Did not receive certificate
+Info: Caching certificate for puppetc.minsk.epam.com
+Info: Caching certificate_revocation_list for ca
+Info: Retrieving plugin
+Error: /File[/var/lib/puppet/lib]: Could not evaluate: Could not retrieve information from environment production source(s)
+puppet://epbyminw1873.minsk.epam.com/plugins
+Info: Caching catalog for puppetc.minsk.epam.com
+Info: Applying configuration version '1443458908'
+Notice: Finished catalog run in 0.04 seconds
+[root@puppetc ~]#
+
+
+###############################################################################################################
+#				Puppet client. Apply manifest from master with ntp module
+###############################################################################################################
+
+
+
+[root@puppetc ~]# puppet agent -t --server  epbyminw1873.minsk.epam.com
+Notice: Using less secure serialization of reports and query parameters for compatibility
+Notice: with older puppet master. To remove this notice, please upgrade your master(s)
+Notice: to Puppet 3.3 or newer.
+Notice: See http://links.puppetlabs.com/deprecate_yaml_on_network for more information.
+Info: Retrieving plugin
+Info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/pe_version.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb
+Info: Caching catalog for puppetc.minsk.epam.com
+Info: Applying configuration version '1443461545'
+Notice: /Stage[main]/Ntp::Config/File[/etc/ntp.conf]/content:
+--- /etc/ntp.conf       2015-09-28 16:44:29.345729212 +0000
++++ /tmp/puppet-file20150928-13329-1nwmg8x      2015-09-28 17:32:28.570748201 +0000
+@@ -1,55 +1,35 @@
+-# For more information about this file, see the man pages
+-# ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5).
++# ntp.conf: Managed by puppet.
++#
++# Enable next tinker options:
++# panic - keep ntpd from panicking in the event of a large clock skew
++# when a VM guest is suspended and resumed;
++# stepout - allow ntpd change offset faster
++tinker panic 0
+
+-driftfile /var/lib/ntp/drift
+
+ # Permit time synchronization with our time source, but do not
+ # permit the source to query or modify the service on this system.
+ restrict default kod nomodify notrap nopeer noquery
+ restrict -6 default kod nomodify notrap nopeer noquery
+-
+-# Permit all access over the loopback interface.  This could
+-# be tightened as well, but to do so would effect some of
+-# the administrative functions.
+-restrict 127.0.0.1
++restrict 127.0.0.1
+ restrict -6 ::1
+
+-# Hosts on local network are less restricted.
+-#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+
+-# Use public servers from the pool.ntp.org project.
+-# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+-server 0.centos.pool.ntp.org iburst
+-server 1.centos.pool.ntp.org iburst
+-server 2.centos.pool.ntp.org iburst
+-server 3.centos.pool.ntp.org iburst
+-
+-#broadcast 192.168.1.255 autokey       # broadcast server
+-#broadcastclient                       # broadcast client
+-#broadcast 224.0.1.1 autokey           # multicast server
+-#multicastclient 224.0.1.1             # multicast client
+-#manycastserver 239.255.254.254                # manycast server
+-#manycastclient 239.255.254.254 autokey # manycast client
+-
+-# Enable public key cryptography.
+-#crypto
+-
+-includefile /etc/ntp/crypto/pw
+-
+-# Key file containing the keys and key identifiers used when operating
+-# with symmetric key cryptography.
+-keys /etc/ntp/keys
+-
+-# Specify the key identifiers which are trusted.
+-#trustedkey 4 8 42
+-
+-# Specify the key identifier to use with the ntpdc utility.
+-#requestkey 8
+-
+-# Specify the key identifier to use with the ntpq utility.
+-#controlkey 8
+-
+-# Enable writing of statistics records.
+-#statistics clockstats cryptostats loopstats peerstats
+-server 10.6.0.3  # added by /sbin/dhclient-script
+-server 10.6.0.6  # added by /sbin/dhclient-script
++
++# Set up servers for ntpd with next options:
++# server - IP address or DNS name of upstream NTP server
++# iburst - allow send sync packages faster if upstream unavailable
++# prefer - select preferrable server
++# minpoll - set minimal update frequency
++# maxpoll - set maximal update frequency
++server 0.centos.pool.ntp.org
++server 1.centos.pool.ntp.org
++server 2.centos.pool.ntp.org
++
++
++# Driftfile.
++driftfile /var/lib/ntp/drift
++
++
++
++
+
+Info: /Stage[main]/Ntp::Config/File[/etc/ntp.conf]: Filebucketed /etc/ntp.conf to puppet with sum 17c781abdfff6e297f1cf25888
+fcfac9
+Notice: /Stage[main]/Ntp::Config/File[/etc/ntp.conf]/content: content changed '{md5}17c781abdfff6e297f1cf25888fcfac9' to '{m
+d5}ff26b20aa0c9fed35515afbcbf7190b0'
+Info: Class[Ntp::Config]: Scheduling refresh of Class[Ntp::Service]
+Info: Class[Ntp::Service]: Scheduling refresh of Service[ntp]
+Notice: /Stage[main]/Ntp::Service/Service[ntp]/ensure: ensure changed 'stopped' to 'running'
+Info: /Stage[main]/Ntp::Service/Service[ntp]: Unscheduling refresh on Service[ntp]
+Notice: Finished catalog run in 1.48 seconds
+[root@puppetc ~]#
