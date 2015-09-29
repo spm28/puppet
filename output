@@ -1,0 +1,403 @@
+###############################################################################################################
+#				Puppet 2. Client. MySQL module install
+###############################################################################################################
+
+[root@puppetc ~]# puppet module install puppetlabs-mysql
+Notice: Preparing to install into /etc/puppet/modules ...
+Notice: Downloading from https://forge.puppetlabs.com ...
+Notice: Installing -- do not interrupt ...
+/etc/puppet/modules
+└─┬ puppetlabs-mysql (v3.6.1)
+  ├── nanliu-staging (v1.0.3)
+  └── puppetlabs-stdlib (v4.9.0)
+[root@puppetc ~]#
+
+
+###############################################################################################################
+#				Puppet 2. Client. Apply manifest topic2.pp (mysql default install)
+###############################################################################################################
+
+[root@puppetc ~]# puppet apply ~/topic2.pp --debug
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/puppet_vardir.rb
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/facter_dot_d.rb
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/pe_version.rb
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/root_home.rb
+Info: Loading facts in /etc/puppet/modules/mysql/lib/facter/mysql_server_id.rb
+Info: Loading facts in /etc/puppet/modules/mysql/lib/facter/mysql_version.rb
+Info: Loading facts in /etc/puppet/modules/staging/lib/facter/staging_windir.rb
+Info: Loading facts in /etc/puppet/modules/staging/lib/facter/staging_http_get.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/pe_version.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb
+Debug: importing '/etc/puppet/modules/mysql/manifests/server.pp' in environment production
+Debug: Automatically imported mysql::server from mysql/server into production
+Debug: importing '/etc/puppet/modules/mysql/manifests/params.pp' in environment production
+Debug: Automatically imported mysql::params from mysql/params into production
+Warning: Config file /etc/puppet/hiera.yaml not found, using Hiera defaults
+Debug: hiera(): Hiera YAML backend starting
+Debug: hiera(): Looking up mysql::server::config_file in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::includedir in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::install_options in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::install_secret_file in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::manage_config_file in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::override_options in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::package_ensure in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::package_manage in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::package_name in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::purge_conf_dir in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::remove_default_accounts in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::restart in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::root_group in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::mysql_group in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::root_password in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::service_enabled in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::service_manage in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::service_name in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::service_provider in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::create_root_user in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::create_root_my_cnf in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::users in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::grants in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::databases in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::enabled in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::manage_service in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: hiera(): Looking up mysql::server::old_root_password in YAML backend
+Debug: hiera(): Looking for data source common
+Debug: hiera(): Cannot find datafile /var/lib/hiera/common.yaml, skipping
+Debug: importing '/etc/puppet/modules/mysql/manifests/server/root_password.pp' in environment production
+Debug: Automatically imported mysql::server::root_password from mysql/server/root_password into production
+Debug: importing '/etc/puppet/modules/mysql/manifests/db.pp' in environment production
+Debug: Automatically imported mysql::db from mysql/db into production
+Debug: importing '/etc/puppet/modules/mysql/manifests/server/install.pp' in environment production
+Debug: Automatically imported mysql::server::install from mysql/server/install into production
+Debug: Executing '/bin/rpm --version'
+Debug: Executing '/bin/rpm -ql rpm'
+Debug: Executing '/bin/rpm --version'
+Debug: importing '/etc/puppet/modules/mysql/manifests/server/config.pp' in environment production
+Debug: Automatically imported mysql::server::config from mysql/server/config into production
+Debug: Failed to load library 'selinux' for feature 'selinux'
+Debug: Scope(Class[Mysql::Server::Config]): Retrieving template mysql/my.cnf.erb
+Debug: template[/etc/puppet/modules/mysql/templates/my.cnf.erb]: Bound template variables for /etc/puppet/modules/mysql/temp
+lates/my.cnf.erb in 0.00 seconds
+Debug: template[/etc/puppet/modules/mysql/templates/my.cnf.erb]: Interpolated template /etc/puppet/modules/mysql/templates/m
+y.cnf.erb in 0.00 seconds
+Debug: importing '/etc/puppet/modules/mysql/manifests/server/installdb.pp' in environment production
+Debug: Automatically imported mysql::server::installdb from mysql/server/installdb into production
+Debug: importing '/etc/puppet/modules/mysql/manifests/server/service.pp' in environment production
+Debug: Automatically imported mysql::server::service from mysql/server/service into production
+Debug: importing '/etc/puppet/modules/mysql/manifests/server/providers.pp' in environment production
+Debug: Automatically imported mysql::server::providers from mysql/server/providers into production
+Debug: Adding relationship from File[mysql-config-file] to Service[mysqld] with 'before'
+Debug: Adding relationship from Anchor[mysql::server::start] to Class[Mysql::Server::Install] with 'before'
+Debug: Adding relationship from Class[Mysql::Server::Install] to Class[Mysql::Server::Config] with 'before'
+Debug: Adding relationship from Class[Mysql::Server::Config] to Class[Mysql::Server::Installdb] with 'before'
+Debug: Adding relationship from Class[Mysql::Server::Installdb] to Class[Mysql::Server::Service] with 'before'
+Debug: Adding relationship from Class[Mysql::Server::Service] to Class[Mysql::Server::Root_password] with 'before'
+Debug: Adding relationship from Class[Mysql::Server::Root_password] to Class[Mysql::Server::Providers] with 'before'
+Debug: Adding relationship from Class[Mysql::Server::Providers] to Anchor[mysql::server::end] with 'before'
+Debug: File[/etc/my.cnf.d]: Adding default for owner
+Debug: File[/etc/my.cnf.d]: Adding default for group
+Debug: File[mysql-config-file]: Adding default for owner
+Debug: File[mysql-config-file]: Adding default for group
+Notice: Compiled catalog for puppetc.minsk.epam.com in environment production in 1.34 seconds
+Debug: Puppet::Type::Package::ProviderPortage: file /usr/bin/emerge does not exist
+Debug: Puppet::Type::Package::ProviderZypper: file /usr/bin/zypper does not exist
+Debug: Puppet::Type::Package::ProviderAix: file /usr/bin/lslpp does not exist
+Debug: Puppet::Type::Package::ProviderNim: file /usr/sbin/nimclient does not exist
+Debug: Puppet::Type::Package::ProviderOpkg: file opkg does not exist
+Debug: Puppet::Type::Package::ProviderOpenbsd: file pkg_info does not exist
+Debug: Puppet::Type::Package::ProviderFreebsd: file /usr/sbin/pkg_info does not exist
+Debug: Puppet::Type::Package::ProviderPorts: file /usr/local/sbin/portupgrade does not exist
+Debug: Puppet::Type::Package::ProviderSun: file /usr/bin/pkginfo does not exist
+Debug: Puppet::Type::Package::ProviderDpkg: file /usr/bin/dpkg does not exist
+Debug: Puppet::Type::Package::ProviderAptrpm: file apt-get does not exist
+Debug: Puppet::Type::Package::ProviderPkgin: file pkgin does not exist
+Debug: Puppet::Type::Package::ProviderPkg: file /usr/bin/pkg does not exist
+Debug: Puppet::Type::Package::ProviderUrpmi: file urpmi does not exist
+Debug: Puppet::Type::Package::ProviderUp2date: file /usr/sbin/up2date-nox does not exist
+Debug: Puppet::Type::Package::ProviderRug: file /usr/bin/rug does not exist
+Debug: Puppet::Type::Package::ProviderHpux: file /usr/sbin/swinstall does not exist
+Debug: Puppet::Type::Package::ProviderPortupgrade: file /usr/local/sbin/portupgrade does not exist
+Debug: Puppet::Type::Package::ProviderApt: file /usr/bin/apt-get does not exist
+Debug: Puppet::Type::Package::ProviderAptitude: file /usr/bin/aptitude does not exist
+Debug: Puppet::Type::Package::ProviderFink: file /sw/bin/fink does not exist
+Debug: Puppet::Type::Package::ProviderSunfreeware: file pkg-get does not exist
+Debug: Puppet::Type::Package::ProviderPacman: file /usr/bin/pacman does not exist
+Debug: Puppet::Type::Service::ProviderLaunchd: file /bin/launchctl does not exist
+Debug: Puppet::Type::Service::ProviderSystemd: file systemctl does not exist
+Debug: Puppet::Type::Service::ProviderDebian: file /usr/sbin/update-rc.d does not exist
+Debug: Puppet::Type::Service::ProviderOpenrc: file /bin/rc-status does not exist
+Debug: Puppet::Type::Service::ProviderDaemontools: file /usr/bin/svc does not exist
+Debug: Puppet::Type::Service::ProviderRunit: file /usr/bin/sv does not exist
+Debug: Puppet::Type::Service::ProviderGentoo: file /sbin/rc-update does not exist
+Debug: Creating default schedules
+Debug: Using settings: adding file resource 'confdir': 'File[/etc/puppet]{:path=>"/etc/puppet", :ensure=>:directory, :loglev
+el=>:debug, :links=>:follow, :backup=>false}'
+Debug: Failed to load library 'shadow' for feature 'libshadow'
+Debug: Puppet::Type::User::ProviderDirectoryservice: file /usr/bin/dsimport does not exist
+Debug: Puppet::Type::User::ProviderUser_role_add: file roleadd does not exist
+Debug: Puppet::Type::User::ProviderPw: file pw does not exist
+Debug: Failed to load library 'ldap' for feature 'ldap'
+Debug: Puppet::Type::User::ProviderLdap: feature ldap is missing
+Debug: Puppet::Type::Group::ProviderDirectoryservice: file /usr/bin/dscl does not exist
+Debug: Puppet::Type::Group::ProviderPw: file pw does not exist
+Debug: Failed to load library 'ldap' for feature 'ldap'
+Debug: Puppet::Type::Group::ProviderLdap: feature ldap is missing
+Debug: Using settings: adding file resource 'vardir': 'File[/var/lib/puppet]{:path=>"/var/lib/puppet", :owner=>"puppet", :gr
+oup=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'logdir': 'File[/var/log/puppet]{:path=>"/var/log/puppet", :mode=>"750", :owner=
+>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'statedir': 'File[/var/lib/puppet/state]{:path=>"/var/lib/puppet/state", :mode=>
+"1755", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'rundir': 'File[/var/run/puppet]{:path=>"/var/run/puppet", :mode=>"755", :owner=
+>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'libdir': 'File[/var/lib/puppet/lib]{:path=>"/var/lib/puppet/lib", :ensure=>:dir
+ectory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'certdir': 'File[/var/lib/puppet/ssl/certs]{:path=>"/var/lib/puppet/ssl/certs",
+:owner=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'ssldir': 'File[/var/lib/puppet/ssl]{:path=>"/var/lib/puppet/ssl", :mode=>"771",
+ :owner=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'publickeydir': 'File[/var/lib/puppet/ssl/public_keys]{:path=>"/var/lib/puppet/s
+sl/public_keys", :owner=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'requestdir': 'File[/var/lib/puppet/ssl/certificate_requests]{:path=>"/var/lib/p
+uppet/ssl/certificate_requests", :owner=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+
+Debug: Using settings: adding file resource 'privatekeydir': 'File[/var/lib/puppet/ssl/private_keys]{:path=>"/var/lib/puppet
+/ssl/private_keys", :mode=>"750", :owner=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}
+'
+Debug: Using settings: adding file resource 'privatedir': 'File[/var/lib/puppet/ssl/private]{:path=>"/var/lib/puppet/ssl/pri
+vate", :mode=>"750", :owner=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostcert': 'File[/var/lib/puppet/ssl/certs/puppetc.minsk.epam.com.pem]{:path=>"
+/var/lib/puppet/ssl/certs/puppetc.minsk.epam.com.pem", :mode=>"644", :owner=>"puppet", :ensure=>:file, :loglevel=>:debug, :l
+inks=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostprivkey': 'File[/var/lib/puppet/ssl/private_keys/puppetc.minsk.epam.com.pem
+]{:path=>"/var/lib/puppet/ssl/private_keys/puppetc.minsk.epam.com.pem", :mode=>"600", :owner=>"puppet", :ensure=>:file, :log
+level=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostpubkey': 'File[/var/lib/puppet/ssl/public_keys/puppetc.minsk.epam.com.pem]{
+:path=>"/var/lib/puppet/ssl/public_keys/puppetc.minsk.epam.com.pem", :mode=>"644", :owner=>"puppet", :ensure=>:file, :loglev
+el=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'localcacert': 'File[/var/lib/puppet/ssl/certs/ca.pem]{:path=>"/var/lib/puppet/s
+sl/certs/ca.pem", :mode=>"644", :owner=>"puppet", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostcrl': 'File[/var/lib/puppet/ssl/crl.pem]{:path=>"/var/lib/puppet/ssl/crl.pe
+m", :mode=>"644", :owner=>"puppet", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'statefile': 'File[/var/lib/puppet/state/state.yaml]{:path=>"/var/lib/puppet/sta
+te/state.yaml", :mode=>"660", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'clientyamldir': 'File[/var/lib/puppet/client_yaml]{:path=>"/var/lib/puppet/clie
+nt_yaml", :mode=>"750", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'client_datadir': 'File[/var/lib/puppet/client_data]{:path=>"/var/lib/puppet/cli
+ent_data", :mode=>"750", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'resourcefile': 'File[/var/lib/puppet/state/resources.txt]{:path=>"/var/lib/pupp
+et/state/resources.txt", :mode=>"640", :owner=>"root", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'clientbucketdir': 'File[/var/lib/puppet/clientbucket]{:path=>"/var/lib/puppet/c
+lientbucket", :mode=>"750", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'lastrunfile': 'File[/var/lib/puppet/state/last_run_summary.yaml]{:path=>"/var/l
+ib/puppet/state/last_run_summary.yaml", :mode=>"644", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'lastrunreport': 'File[/var/lib/puppet/state/last_run_report.yaml]{:path=>"/var/
+lib/puppet/state/last_run_report.yaml", :mode=>"640", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'graphdir': 'File[/var/lib/puppet/state/graphs]{:path=>"/var/lib/puppet/state/gr
+aphs", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'pluginfactdest': 'File[/var/lib/puppet/facts.d]{:path=>"/var/lib/puppet/facts.d
+", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: /File[/var/lib/puppet/state]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/lib]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/ssl/certs]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/ssl/public_keys]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/certificate_requests]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private_keys]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/certs/puppetc.minsk.epam.com.pem]: Autorequiring File[/var/lib/puppet/ssl/certs]
+Debug: /File[/var/lib/puppet/ssl/private_keys/puppetc.minsk.epam.com.pem]: Autorequiring File[/var/lib/puppet/ssl/private_ke
+ys]
+Debug: /File[/var/lib/puppet/ssl/public_keys/puppetc.minsk.epam.com.pem]: Autorequiring File[/var/lib/puppet/ssl/public_keys
+]
+Debug: /File[/var/lib/puppet/ssl/certs/ca.pem]: Autorequiring File[/var/lib/puppet/ssl/certs]
+Debug: /File[/var/lib/puppet/ssl/crl.pem]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/state/state.yaml]: Autorequiring File[/var/lib/puppet/state]
+Debug: /File[/var/lib/puppet/client_yaml]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/client_data]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/state/resources.txt]: Autorequiring File[/var/lib/puppet/state]
+Debug: /File[/var/lib/puppet/clientbucket]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/state/last_run_summary.yaml]: Autorequiring File[/var/lib/puppet/state]
+Debug: /File[/var/lib/puppet/state/last_run_report.yaml]: Autorequiring File[/var/lib/puppet/state]
+Debug: /File[/var/lib/puppet/state/graphs]: Autorequiring File[/var/lib/puppet/state]
+Debug: /File[/var/lib/puppet/facts.d]: Autorequiring File[/var/lib/puppet]
+Debug: Finishing transaction 28223400
+Debug: Loaded state in 0.01 seconds
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/puppet_vardir.rb
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/facter_dot_d.rb
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/pe_version.rb
+Info: Loading facts in /etc/puppet/modules/stdlib/lib/facter/root_home.rb
+Info: Loading facts in /etc/puppet/modules/mysql/lib/facter/mysql_server_id.rb
+Info: Loading facts in /etc/puppet/modules/mysql/lib/facter/mysql_version.rb
+Info: Loading facts in /etc/puppet/modules/staging/lib/facter/staging_windir.rb
+Info: Loading facts in /etc/puppet/modules/staging/lib/facter/staging_http_get.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/pe_version.rb
+Info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb
+Debug: Loaded state in 0.01 seconds
+Debug: /Stage[main]/Mysql::Server::Install/before: requires Class[Mysql::Server::Config]
+Debug: /Stage[main]/Mysql::Server::Config/before: requires Class[Mysql::Server::Installdb]
+Debug: /Stage[main]/Mysql::Server::Config/File[mysql-config-file]/before: requires Service[mysqld]
+Debug: /Stage[main]/Mysql::Server::Installdb/before: requires Class[Mysql::Server::Service]
+Debug: /Stage[main]/Mysql::Server::Installdb/Exec[mysql_install_db]/require: requires Package[mysql-server]
+Debug: /Stage[main]/Mysql::Server::Service/before: requires Class[Mysql::Server::Root_password]
+Debug: /Stage[main]/Mysql::Server::Service/Service[mysqld]/require: requires Package[mysql-server]
+Debug: /Stage[main]/Mysql::Server::Root_password/before: requires Class[Mysql::Server::Providers]
+Debug: /Stage[main]/Mysql::Server::Providers/before: requires Anchor[mysql::server::end]
+Debug: /Stage[main]/Mysql::Server/Anchor[mysql::server::start]/before: requires Class[Mysql::Server::Install]
+Info: Applying configuration version '1443535524'
+Debug: Prefetching yum resources for package
+Debug: Executing '/bin/rpm --version'
+Debug: Executing '/bin/rpm -qa --nosignature --nodigest --qf '%{NAME} %|EPOCH?{%{EPOCH}}:{0}| %{VERSION} %{RELEASE} %{ARCH}\
+n''
+Debug: Executing '/bin/rpm -q mysql-server --nosignature --nodigest --qf %{NAME} %|EPOCH?{%{EPOCH}}:{0}| %{VERSION} %{RELEAS
+E} %{ARCH}\n'
+Debug: Package[mysql-server](provider=yum): Ensuring => present
+Debug: Executing '/usr/bin/yum -d 0 -e 0 -y install mysql-server'
+Debug: Executing '/bin/rpm -q mysql-server --nosignature --nodigest --qf %{NAME} %|EPOCH?{%{EPOCH}}:{0}| %{VERSION} %{RELEAS
+E} %{ARCH}\n'
+Notice: /Stage[main]/Mysql::Server::Install/Package[mysql-server]/ensure: created
+Debug: /Stage[main]/Mysql::Server::Install/Package[mysql-server]: The container Class[Mysql::Server::Install] will propagate
+ my refresh event
+Debug: Class[Mysql::Server::Install]: The container Stage[main] will propagate my refresh event
+Info: /Stage[main]/Mysql::Server::Config/File[mysql-config-file]: Filebucketed /etc/my.cnf to puppet with sum 8ace886bbe7e27
+4448bc8bea16d3ead6
+Notice: /Stage[main]/Mysql::Server::Config/File[mysql-config-file]/content: content changed '{md5}8ace886bbe7e274448bc8bea16
+d3ead6' to '{md5}d0d209eb5ed544658b3f1a72274bc3ed'
+Debug: /Stage[main]/Mysql::Server::Config/File[mysql-config-file]: The container Class[Mysql::Server::Config] will propagate
+ my refresh event
+Notice: /Stage[main]/Mysql::Server::Config/File[/etc/my.cnf.d]/ensure: created
+Debug: /Stage[main]/Mysql::Server::Config/File[/etc/my.cnf.d]: The container Class[Mysql::Server::Config] will propagate my
+refresh event
+Debug: Class[Mysql::Server::Config]: The container Stage[main] will propagate my refresh event
+Debug: Exec[mysql_install_db](provider=posix): Executing 'mysql_install_db --basedir=/usr --defaults-extra-file=/etc/my.cnf
+--datadir=/var/lib/mysql --user=mysql'
+Debug: Executing 'mysql_install_db --basedir=/usr --defaults-extra-file=/etc/my.cnf --datadir=/var/lib/mysql --user=mysql'
+Notice: /Stage[main]/Mysql::Server::Installdb/Exec[mysql_install_db]/returns: executed successfully
+Debug: /Stage[main]/Mysql::Server::Installdb/Exec[mysql_install_db]: The container Class[Mysql::Server::Installdb] will prop
+agate my refresh event
+Debug: Class[Mysql::Server::Installdb]: The container Stage[main] will propagate my refresh event
+Debug: Executing '/sbin/service mysqld status'
+Debug: Executing '/sbin/chkconfig mysqld'
+Debug: Executing '/sbin/service mysqld start'
+Debug: Executing '/sbin/chkconfig mysqld'
+Debug: Executing '/sbin/chkconfig mysqld on'
+Notice: /Stage[main]/Mysql::Server::Service/Service[mysqld]/ensure: ensure changed 'stopped' to 'running'
+Debug: /Stage[main]/Mysql::Server::Service/Service[mysqld]: The container Class[Mysql::Server::Service] will propagate my re
+fresh event
+Info: /Stage[main]/Mysql::Server::Service/Service[mysqld]: Unscheduling refresh on Service[mysqld]
+Debug: Class[Mysql::Server::Service]: The container Stage[main] will propagate my refresh event
+Debug: Exec[remove install pass](provider=posix): Executing check 'test -f /.mysql_secret'
+Debug: Executing 'test -f /.mysql_secret'
+Debug: Finishing transaction 25245660
+Debug: Storing state
+Debug: Stored state in 0.02 seconds
+Notice: Finished catalog run in 68.56 seconds
+Debug: Using settings: adding file resource 'rrddir': 'File[/var/lib/puppet/rrd]{:path=>"/var/lib/puppet/rrd", :mode=>"750",
+ :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Finishing transaction 30900300
+Debug: Received report to process from puppetc.minsk.epam.com
+Debug: Processing report from puppetc.minsk.epam.com with processor Puppet::Reports::Store
+[root@puppetc ~]#
+
+
+
+###############################################################################################################
+#				Puppet 2. Client. Apply manifest topic2.pp (mysql task config)
+###############################################################################################################
+
+[root@puppetc ~]# puppet apply ~/topic2.pp
+Warning: Config file /etc/puppet/hiera.yaml not found, using Hiera defaults
+Notice: Compiled catalog for puppetc.minsk.epam.com in environment production in 1.78 seconds
+Notice: /Stage[main]/Main/Node[default]/Mysql::Db[testmdb]/Mysql_user[test_user@localhost]/ensure: created
+Notice: /Stage[main]/Main/Node[default]/Mysql::Db[testmdb]/Mysql_database[testmdb]/ensure: created
+Notice: /Stage[main]/Main/Node[default]/Mysql::Db[testmdb]/Mysql_grant[test_user@localhost/testmdb.*]/ensure: created
+Notice: Finished catalog run in 2.51 seconds
+[root@puppetc ~]#
+
+
+
+###############################################################################################################
+#				Puppet 2. Client. MySQL test
+###############################################################################################################
+
+
+[root@puppetc ~]# mysql --host=localhost --user=test_user --password=test_user
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 5.1.73 Source distribution
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> Use testmdb
+Database changed
+mysql>  SELECT 21 * 2 AS meaning_of_life;
++-----------------+
+| meaning_of_life |
++-----------------+
+|              42 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql>
